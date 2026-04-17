@@ -10,20 +10,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Checkout
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Node setup
+      # Setup Node (REQUIRED for Vite)
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 20
-
-      # Debug path
-      - name: Debug path
-        run: |
-          pwd
-          ls
 
       # Build React
       - name: Build React
@@ -32,7 +27,12 @@ jobs:
           npm install
           npm run build
 
-      # .NET setup
+      # 🔥 IMPORTANT: Copy React build into .NET wwwroot
+      - name: Copy React build to .NET
+        run: |
+          cp -r DigitalEvaluationReact/dist/* DIGITALEVALUATIONAPT/wwwroot/
+
+      # Setup .NET
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
@@ -42,7 +42,7 @@ jobs:
       - name: Publish .NET
         run: dotnet publish DIGITALEVALUATIONAPT -c Release -o publish
 
-      # FTP Deploy ✅ FIXED
+      # Deploy via FTP (FINAL FIX)
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
