@@ -24,10 +24,10 @@ jobs:
         node-version: 18
 
     - name: Build React
-      run: |
-        cd DigitalEvaluationReact
-        npm install
-        npm run build
+  working-directory: DigitalEvaluationReact
+  run: |
+    npm install
+    npm run build
 
     - name: Copy React build
       run: |
