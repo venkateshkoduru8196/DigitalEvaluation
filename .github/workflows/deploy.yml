@@ -7,39 +7,40 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: 8.0.x
+      # Node setup
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
-    - name: Setup Node
-      uses: actions/setup-node@v3
-      with:
-        node-version: 18
+      # Build React
+      - name: Build React
+        working-directory: DigitalEvaluationReact
+        run: |
+          npm install
+          npm run build
 
-    - name: Build React
-  working-directory: DigitalEvaluationReact
-  run: |
-    npm install
-    npm run build
+      # .NET setup
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 8.0.x
 
-    - name: Copy React build
-      run: |
-        xcopy /E /I /Y DigitalEvaluationReact\dist\* DIGITALEVALUATIONAPT\wwwroot\
+      # Publish .NET
+      - name: Publish .NET
+        run: dotnet publish DIGITALEVALUATIONAPT -c Release -o publish
 
-    - name: Publish .NET
-      run: dotnet publish DIGITALEVALUATIONAPT -c Release -o ./publish
-
-    - name: Deploy FTP
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-      with:
-        server: ${{ secrets.FTP_SERVER }}
-        username: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: ./publish/
+      # FTP Deploy
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: publish
