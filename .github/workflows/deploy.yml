@@ -13,7 +13,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Node setup ✅ FIXED
+      # Node setup
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
@@ -25,7 +25,7 @@ jobs:
           pwd
           ls
 
-      # Build React ✅
+      # Build React
       - name: Build React
         run: |
           cd DigitalEvaluationReact
@@ -42,12 +42,12 @@ jobs:
       - name: Publish .NET
         run: dotnet publish DIGITALEVALUATIONAPT -c Release -o publish
 
-      # FTP Deploy
+      # FTP Deploy ✅ FIXED
       - name: Deploy via FTP
-  uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-  with:
-    server: ${{ secrets.FTP_SERVER }}
-    username: ${{ secrets.FTP_USERNAME }}
-    password: ${{ secrets.FTP_PASSWORD }}
-    local-dir: publish/
-    server-dir: httpdocs/
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: publish/
+          server-dir: httpdocs/
