@@ -13,11 +13,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Node setup
+      # Node setup ✅ FIXED
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20
 
       # Debug path
       - name: Debug path
@@ -25,21 +25,10 @@ jobs:
           pwd
           ls
 
-      # Build React
+      # Build React ✅
       - name: Build React
         run: |
-          echo "Current folder:"
-          pwd
-          echo "Files here:"
-          ls
-
-          echo "Going into React folder"
           cd DigitalEvaluationReact
-
-          echo "Now inside:"
-          pwd
-          ls
-
           npm install
           npm run build
 
