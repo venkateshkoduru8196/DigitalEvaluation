@@ -10,39 +10,40 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout
+      # 1. Checkout code
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Setup Node (REQUIRED for Vite)
+      # 2. Setup Node (for React / Vite)
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 20
 
-      # Build React
+      # 3. Build React
       - name: Build React
         run: |
           cd DigitalEvaluationReact
           npm install
           npm run build
 
-      # 🔥 IMPORTANT: Copy React build into .NET wwwroot
+      # 4. Copy React build into .NET wwwroot (FIXED PATH)
       - name: Copy React build to .NET
         run: |
-          cp -r DigitalEvaluationReact/dist/* DIGITALEVALUATIONAPT/wwwroot/
+          mkdir -p DIGITALEVALUATIONAPT/DIGITALEVALUATION/wwwroot
+          cp -r DigitalEvaluationReact/dist/* DIGITALEVALUATIONAPT/DIGITALEVALUATION/wwwroot/
 
-      # Setup .NET
+      # 5. Setup .NET
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 8.0.x
 
-      # Publish .NET
+      # 6. Publish .NET (FIXED PATH)
       - name: Publish .NET
-        run: dotnet publish DIGITALEVALUATIONAPT -c Release -o publish
+        run: dotnet publish DIGITALEVALUATIONAPT/DIGITALEVALUATION -c Release -o publish
 
-      # Deploy via FTP (FINAL FIX)
+      # 7. Deploy to Plesk via FTP
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
