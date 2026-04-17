@@ -19,12 +19,18 @@ jobs:
         with:
           node-version: 18
 
+
+        - name: Debug path
+        run: |
+          pwd
+          ls
+
       # Build React
       - name: Build React
-        working-directory: ./DigitalEvaluationReact
-        run: |
-          npm install
-          npm run build
+  working-directory: ./DigitalEvaluationReact
+  run: |
+    npm install
+    npm run build
 
       # .NET setup
       - name: Setup .NET
