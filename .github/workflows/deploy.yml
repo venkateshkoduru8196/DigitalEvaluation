@@ -21,7 +21,7 @@ jobs:
 
       # Build React
       - name: Build React
-        working-directory: DigitalEvaluationReact
+        working-directory: ./DigitalEvaluationReact
         run: |
           npm install
           npm run build
