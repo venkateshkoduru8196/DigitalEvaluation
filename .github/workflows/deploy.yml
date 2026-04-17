@@ -27,21 +27,21 @@ jobs:
 
       # Build React
       - name: Build React
-  run: |
-    echo "Current folder:"
-    pwd
-    echo "Files here:"
-    ls
+        run: |
+          echo "Current folder:"
+          pwd
+          echo "Files here:"
+          ls
 
-    echo "Going into React folder"
-    cd DigitalEvaluationReact
+          echo "Going into React folder"
+          cd DigitalEvaluationReact
 
-    echo "Now inside:"
-    pwd
-    ls
+          echo "Now inside:"
+          pwd
+          ls
 
-    npm install
-    npm run build
+          npm install
+          npm run build
 
       # .NET setup
       - name: Setup .NET
