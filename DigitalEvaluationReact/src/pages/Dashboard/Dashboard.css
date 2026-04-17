@@ -1,0 +1,161 @@
+/* ===== LAYOUT ===== */
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  background: #f4f6f9;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+  width: 250px;
+  background: #1f2937;
+  color: white;
+  position: fixed;
+  height: 100vh;
+  transition: all 0.3s ease;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+/* COLLAPSE */
+.sidebar.collapsed {
+  width: 70px;
+}
+
+/* HEADER */
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #374151;
+}
+
+/* .sidebar-title {
+  font-size: 16px;
+  font-weight: bold;
+  co
+} */
+
+
+.sidebar-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffffff;   /* 🔥 make it white */
+}
+
+/* HAMBURGER */
+.hamburger {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* ===== MENU ===== */
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 16px;
+  width: 100%;
+  border: none;
+  background: none;
+  color: #e5e7eb;
+  cursor: pointer;
+}
+
+.sidebar-link:hover {
+  background: #374151;
+}
+
+/* ICON */
+.menu-icon {
+  font-size: 22px;
+  width: 30px;
+  text-align: center;
+}
+
+/* TEXT */
+.menu-text {
+  flex: 1;
+}
+
+/* HIDE TEXT WHEN COLLAPSED */
+.sidebar.collapsed .menu-text {
+  display: none;
+}
+
+/* CENTER ICON */
+.sidebar.collapsed .sidebar-link {
+  justify-content: center;
+}
+
+/* ===== MAIN ===== */
+.main-content {
+  margin-left: 250px;
+  padding: 20px;
+  width: 100%;
+  transition: 0.3s;
+}
+
+
+
+.sidebar.collapsed ~ .main-content {
+  margin-left: 70px;
+}
+
+/* ===== CARDS ===== */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.stat-card {
+  padding: 20px;
+  border-radius: 10px;
+  color: white;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.stat-card p {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.stat-card.blue { background: #3b82f6; }
+.stat-card.yellow { background: #f59e0b; }
+.stat-card.green { background: #10b981; }
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav li {
+  list-style: none;
+}
+.submenu {
+  list-style: none;
+  padding-left: 0;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+
+  .sidebar {
+    transform: translateX(-100%);
+    width: 250px;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .main-content {
+    margin-left: 0;
+  }
+}

@@ -1,0 +1,227 @@
+/* ================= CONTAINER ================= */
+.subject-container {
+  padding: 20px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* ================= FORM ================= */
+.subject-form {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin-bottom: 30px;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px 20px;
+}
+
+.subject-form h3 {
+  grid-column: span 2;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+/* LABEL */
+.subject-form label {
+  font-weight: 600;
+  font-size: 14px;
+  color: #555;
+}
+
+/* INPUT */
+.subject-form input {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 14px;
+  transition: 0.2s;
+  width: 100%;
+}
+
+.subject-form input:focus {
+  border-color: #4cafef;
+}
+
+/* ERROR INPUT */
+.input-error {
+  border-color: red !important;
+}
+
+/* ERROR TEXT */
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: -5px;
+  margin-bottom: 5px;
+}
+
+/* BUTTON */
+.subject-form button {
+  grid-column: span 2;
+}
+
+/* ================= BUTTONS ================= */
+.btn {
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+/* ADD */
+.add-btn {
+  background-color: #4caf50;
+  color: white;
+}
+
+.add-btn:hover {
+  background-color: #43a047;
+}
+
+/* EDIT */
+.edit-btn {
+  background-color: #2196f3;
+  color: white;
+}
+
+.edit-btn:hover {
+  background-color: #1976d2;
+}
+
+/* DELETE */
+.delete-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #d32f2f;
+}
+
+/* CANCEL */
+.cancel-btn {
+  background-color: #9e9e9e;
+  color: white;
+}
+
+.cancel-btn:hover {
+  background-color: #757575;
+}
+
+/* ================= TABLE ================= */
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.subject-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* HEADER */
+.subject-table thead {
+  background-color: #2c3e50;
+  color: white;
+}
+
+.subject-table th,
+.subject-table td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+/* HOVER */
+.subject-table tbody tr:hover {
+  background-color: #f5f5f5;
+}
+
+/* ================= INLINE EDIT ================= */
+.subject-table input {
+  width: 100%;
+  padding: 6px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+/* ================= RESPONSIVE ================= */
+
+/* TABLE → MOBILE CARD VIEW */
+@media (max-width: 768px) {
+  .subject-form {
+    grid-template-columns: 1fr;
+  }
+
+  .subject-form h3 {
+    grid-column: span 1;
+  }
+
+  .subject-form button {
+    grid-column: span 1;
+  }
+
+  .subject-table thead {
+    display: none;
+  }
+
+  .subject-table,
+  .subject-table tbody,
+  .subject-table tr,
+  .subject-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .subject-table tr {
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    background: #fff;
+  }
+
+  .subject-table td {
+    text-align: left;
+    padding: 8px;
+    position: relative;
+  }
+
+  .subject-table td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    display: block;
+    color: #555;
+  }
+}
+
+/* SMALL DEVICES */
+@media (max-width: 480px) {
+  .subject-container {
+    padding: 10px;
+  }
+
+  .subject-form input {
+    font-size: 13px;
+    padding: 8px;
+  }
+
+  .btn {
+    font-size: 13px;
+    padding: 8px;
+  }
+}
